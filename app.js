@@ -73,7 +73,9 @@ app.use('/graphql', graphqlHttp({
                title: args.eventInput.title,
                description: args.eventInput.description,
                price: args.eventInput.price,
-               date: new Date(args.eventInput.date)
+               date: new Date(args.eventInput.date),
+               creator: '5d7024715d55f173a24a6f41'
+
            });
            event
                 .save()
