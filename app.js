@@ -43,7 +43,7 @@ app.use('/graphql', graphqlHttp({
     `),
     rootValue: {
         events: () => {
-            return events;
+            Event.find({title: 'etc etc'})
         },
 
         createEvent: (args) => {
