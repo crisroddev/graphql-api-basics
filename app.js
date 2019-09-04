@@ -88,7 +88,7 @@ app.use('/graphql', graphqlHttp({
            return event;
         },
         createUser: args => {
-            User.findOne({email: args.userInput.email})
+            return User.findOne({email: args.userInput.email})
                 .then(user => {
                     if(user) {
                         throw new Error('User Exists')
