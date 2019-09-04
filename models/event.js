@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Schema = mngoose.Schema;
+const Schema = mongoose.Schema;
 
 const eventSchema = new Schema({
     title: {
