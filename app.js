@@ -34,6 +34,11 @@ app.use('/graphql', graphqlHttp({
         date: String!
     }
 
+    input UserInput {
+        email: String!
+        password: String!
+    }
+
     type RootQuery{
         events: [Event!]!
     }
