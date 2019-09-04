@@ -12,10 +12,22 @@ const app = express();
 
 app.use(bodyParser.json());
 
+const events = eventIds => {
+    return Event.find({_ID: {$in: eventIds}})
+        .then(events => {
+            return events.map(event => {
+                return { ...event._doc, _id: event.id, creator: user.bind(this, event.creator)}
+            })
+        })
+        .catch(error => {
+            throw new error;
+        })
+}
+
 const user = userId => {
     return User.findById(userId)
         .then(user => {
-            return { ...user._doc, _id: user.id}
+            return { ...user._doc, _id: user.id, createdEvents: events.bind(this, user._doc.createdEvents)}
         })
         .catch(error => {
             throw error
