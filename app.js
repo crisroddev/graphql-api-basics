@@ -88,21 +88,27 @@ app.use('/graphql', graphqlHttp({
            return event;
         },
         createUser: args => {
-            return bcrypt
-                .hash(args.userInput.password, 12)
+            User.findOne({email: args.userInput.email})
+                .then(user => {
+                    if(user) {
+                        throw new Error('User Exists')
+                    }
+                    return bcrypt
+                        .hash(args.userInput.password, 12)
+                })
                 .then(hashedPassword => {
-                    const user = new User({
-                        email: args.userInput.email,
-                        password: hashedPassword
-                    });
-                    return user.save();
-                })
-                .then(result => {
-                    return {...result._doc, password: null, _id: result.id}
-                })
-                .catch(error => {
-                    throw error;
-                })
+                        const user = new User({
+                            email: args.userInput.email,
+                            password: hashedPassword
+                        });
+                        return user.save();
+                    })
+                    .then(result => {
+                        return {...result._doc, password: null, _id: result.id}
+                    })
+                    .catch(error => {
+                        throw error;
+                    })
         }
     },
     graphiql: true
