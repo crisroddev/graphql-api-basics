@@ -5,6 +5,7 @@ const { buildSchema } = require('graphql')
 const mongoose = require('mongoose');
 
 const Event = require('./models/event');
+const User = require('./models/user');
 
 const app = express();
 
@@ -84,6 +85,13 @@ app.use('/graphql', graphqlHttp({
                throw error;
             });
            return event;
+        },
+        createUser: args => {
+            const user = new User({
+                email: args.userInput.email,
+                password: args.userInput.password
+            })
+
         }
     },
     graphiql: true

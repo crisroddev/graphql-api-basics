@@ -13,3 +13,8 @@ createdEvents: [
 ```
 module.exports = mongoose.model('Event', eventSchema);
 ``` 
+- args
+```
+createUser(userInput: UserInput): User
+```
+- args will be userInput
