@@ -116,5 +116,10 @@ module.exports = {
     } catch (err) {
       throw err;
     }
+  },
+  bookEvent: async args => {
+    const booking = new Booking({
+      
+    })
   }
 };
