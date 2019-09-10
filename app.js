@@ -19,7 +19,8 @@ app.use('/graphql', graphqlHttp({
 mongoose.connect(
     `mongodb+srv://${process.env.MONGO_USER}:${
         process.env.MONGO_PASS
-    }@events-q2etz.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`
+    }@events-q2etz.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`, 
+    { useNewUrlParser: true }
     ).then(() => {
         app.listen(3000);
     })
